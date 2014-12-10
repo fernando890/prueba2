@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateProductTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateProductLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{productController.selected.id}" title="#{bundle.CreateProductTitle_id}" required="true" requiredMessage="#{bundle.CreateProductRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateProductLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{productController.selected.nombre}" title="#{bundle.CreateProductTitle_nombre}" required="true" requiredMessage="#{bundle.CreateProductRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.CreateProductLabel_precio}" for="precio" />
+                    <h:inputText id="precio" value="#{productController.selected.precio}" title="#{bundle.CreateProductTitle_precio}" required="true" requiredMessage="#{bundle.CreateProductRequiredMessage_precio}"/>
+                    <h:outputLabel value="#{bundle.CreateProductLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{productController.selected.descripcion}" title="#{bundle.CreateProductTitle_descripcion}" />
+                    <h:outputLabel value="#{bundle.CreateProductLabel_talla}" for="talla" />
+                    <h:inputText id="talla" value="#{productController.selected.talla}" title="#{bundle.CreateProductTitle_talla}" required="true" requiredMessage="#{bundle.CreateProductRequiredMessage_talla}"/>
+                    <h:outputLabel value="#{bundle.CreateProductLabel_existencia}" for="existencia" />
+                    <h:inputText id="existencia" value="#{productController.selected.existencia}" title="#{bundle.CreateProductTitle_existencia}" required="true" requiredMessage="#{bundle.CreateProductRequiredMessage_existencia}"/>
+                    <h:outputLabel value="#{bundle.CreateProductLabel_categoryId}" for="categoryId" />
+                    <h:selectOneMenu id="categoryId" value="#{productController.selected.categoryId}" title="#{bundle.CreateProductTitle_categoryId}" required="true" requiredMessage="#{bundle.CreateProductRequiredMessage_categoryId}">
+                        <f:selectItems value="#{categoriaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{productController.create}" value="#{bundle.CreateProductSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{productController.prepareList}" value="#{bundle.CreateProductShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateProductIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatePedidoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatePedidoLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{pedidoController.selected.id}" title="#{bundle.CreatePedidoTitle_id}" required="true" requiredMessage="#{bundle.CreatePedidoRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreatePedidoLabel_total}" for="total" />
+                    <h:inputText id="total" value="#{pedidoController.selected.total}" title="#{bundle.CreatePedidoTitle_total}" required="true" requiredMessage="#{bundle.CreatePedidoRequiredMessage_total}"/>
+                    <h:outputLabel value="#{bundle.CreatePedidoLabel_fechaentrega}" for="fechaentrega" />
+                    <h:inputText id="fechaentrega" value="#{pedidoController.selected.fechaentrega}" title="#{bundle.CreatePedidoTitle_fechaentrega}" required="true" requiredMessage="#{bundle.CreatePedidoRequiredMessage_fechaentrega}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreatePedidoLabel_numeroconfirma}" for="numeroconfirma" />
+                    <h:inputText id="numeroconfirma" value="#{pedidoController.selected.numeroconfirma}" title="#{bundle.CreatePedidoTitle_numeroconfirma}" required="true" requiredMessage="#{bundle.CreatePedidoRequiredMessage_numeroconfirma}"/>
+                    <h:outputLabel value="#{bundle.CreatePedidoLabel_cantidad}" for="cantidad" />
+                    <h:inputText id="cantidad" value="#{pedidoController.selected.cantidad}" title="#{bundle.CreatePedidoTitle_cantidad}" required="true" requiredMessage="#{bundle.CreatePedidoRequiredMessage_cantidad}"/>
+                    <h:outputLabel value="#{bundle.CreatePedidoLabel_status}" for="status" />
+                    <h:inputText id="status" value="#{pedidoController.selected.status}" title="#{bundle.CreatePedidoTitle_status}" required="true" requiredMessage="#{bundle.CreatePedidoRequiredMessage_status}"/>
+                    <h:outputLabel value="#{bundle.CreatePedidoLabel_customerId}" for="customerId" />
+                    <h:selectOneMenu id="customerId" value="#{pedidoController.selected.customerId}" title="#{bundle.CreatePedidoTitle_customerId}" required="true" requiredMessage="#{bundle.CreatePedidoRequiredMessage_customerId}">
+                        <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{pedidoController.create}" value="#{bundle.CreatePedidoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{pedidoController.prepareList}" value="#{bundle.CreatePedidoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreatePedidoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

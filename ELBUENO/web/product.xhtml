@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        
+
+        
+        <h:outputText id="cartSize" value="tu carrito tiene #{carro.cartcount} elementos por el momento"/>
+        <br/><br/>
+        disfraz: #{prod.product.nombre} <br/>
+        precio: #{prod.product.precio} <br/>
+        <h:form id='form'>
+            <input type="hidden"  name="query" value="#{prod.query}"/>
+            
+            
+            <h:commandButton value="agregar al carrito" action="#{prod.addtocart()}">
+                <f:ajax execute="@form" render=":cartSize"/>
+
+            </h:commandButton>
+
+        </h:form>
+       
+        <h:outputLink value="carro.xhtml">ver carrito</h:outputLink>&nbsp;&nbsp;&nbsp;
+        <h:outputLink value="../faces/product/List.xhtml">seguir comprando</h:outputLink>
+
+    </h:body>
+</html>
+

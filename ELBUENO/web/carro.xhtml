@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+       <h:outputText id="cartSize" value="tu carrito tiene #{carro.cartcount} elementos"/>
+       <br/>
+ 
+            <ui:repeat value="#{carro.cartContents.entrySet().toArray()}" var="pp" >
+                <br/>
+
+            nombre: #{pp.key.nombre}
+            <br/>
+            precio:$ #{pp.key.precio}
+            <br/>
+            cantidad:#{pp.value}
+            <br/>
+                   El total a pagar es: 
+                   <h:outputText rendered="#{pp.value>1}" value="$ #{pp.key.precio * pp.value}"  />
+         <h:outputText rendered="#{pp.value==1}" value="$ #{pp.key.precio}"/>
+ 
+                     
+         
+         <br/>
+
+<h:form>
+    <h:commandButton value="quitar" action="#{carro.remove(pp.key)}"/>
+    <h:commandButton value="agregar" action="#{carro.add(pp.key)}"/>
+
+</h:form>
+            </ui:repeat>
+
+
+
+<h:outputLink value="../faces/product/List.xhtml">seguir comprando</h:outputLink>
+    </h:body>
+</html>
+
